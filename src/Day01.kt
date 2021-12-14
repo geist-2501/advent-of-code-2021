@@ -1,17 +1,34 @@
 fun main() {
-    fun part1(input: List<String>): Int {
-        return input.size
+    fun part1(input: List<Int>): Int {
+        var asc = 0
+        var prev = input[0]
+        for (i in 1 until input.size) {
+            if (input[i] > prev) {
+                asc++
+            }
+
+            prev = input[i]
+        }
+
+        return asc
     }
 
-    fun part2(input: List<String>): Int {
-        return input.size
+    fun part2(input: List<Int>): Int {
+        var asc = 0
+        var prev = input[0] + input[1] + input[2]
+        for (i in 1..input.size-3) {
+            val next = input[i] + input[i+1] + input[i+2]
+
+            if (next > prev) asc++
+
+            prev = next
+        }
+
+        return asc
     }
 
-    // test if implementation meets criteria from the description, like:
-    val testInput = readInput("Day01_test")
-    check(part1(testInput) == 1)
+    val input1 = readInput("resources/day01.txt").map { it.toInt() }
+    println(part1(input1))
 
-    val input = readInput("Day01")
-    println(part1(input))
-    println(part2(input))
+    println(part2(input1))
 }
