@@ -24,3 +24,8 @@ fun binaryToInt(b: String): Int {
 
     return v
 }
+
+fun readInts(str: String): IntArray {
+    val words = str.trim().split("""\s+""".toRegex())
+    return words.map { it.toInt() }.toIntArray()
+}
